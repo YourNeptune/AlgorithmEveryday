@@ -1,6 +1,7 @@
 package Two_Number_Sum;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,7 +22,7 @@ class Program{
         return new int[0];
     }
 
-    // Solution 2
+    // Solution 2: HashSet
     // O(n) time | O(n) space
     public static int[] solution2(int[] array, int targetSum) {
         Set<Integer> nums = new HashSet<>();
@@ -56,4 +57,20 @@ class Program{
         }
         return new int[0];
     }
+
+    //Solution 4: if we have to return the index rather than the number itself, use HashMap
+    // O(n) time & space
+    public static int[] solution4(int[] array, int target) {
+        HashMap<Integer,Integer> myMap = new HashMap<>();
+        for(int i = 0; i < array.length; i++){
+            int potentialMatch = target - array[i];
+            if(myMap.containsKey(potentialMatch)){
+                return new int[]{myMap.get(potentialMatch), i}; // return their index
+            }else{
+                myMap.put(array[i],i);
+            }
+        }
+        return null;
+    }
+
 }
